@@ -7,7 +7,7 @@ import { useIntl } from "react-intl";
 export default function Home() {
   const { formatMessage } = useIntl()
   const t = (id: string) => formatMessage({ id })
-  
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
