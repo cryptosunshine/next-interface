@@ -1,0 +1,28 @@
+{
+  "name": "next-interface",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-aria/ssr": "^3.7.0",
+    "@types/node": "20.4.5",
+    "@types/react": "18.2.18",
+    "@types/react-dom": "18.2.7",
+    "eslint": "8.46.0",
+    "eslint-config-next": "13.4.12",
+    "express": "^4.18.2",
+    "less": "^4.1.3",
+    "less-loader": "^11.1.3",
+    "next": "13.4.12",
+    "next-with-less": "^3.0.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.1.6",
+    "webpack": "^5.88.2"
+  }
+}
