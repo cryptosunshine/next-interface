@@ -25,12 +25,19 @@ const App = ({ Component, pageProps }: AppProps) => {
   const messages = { ...localeCopy[pathname], ...localeCopy['share'] }
 
   useEffect(() => {
+    //读取本地存储的主题
+    const theme = localStorage.getItem("theme");
+    if (theme) {
+      document.documentElement.classList.add(theme);
+    }
+
 
     const handleRouteChange = (url: any) => {
-      console.log(url)
-      window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
-        page_path: url,
-      })
+      if (window.gtag) {
+        window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
+          page_path: url,
+        })
+      }
     }
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
