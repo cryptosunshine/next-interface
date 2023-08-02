@@ -3,8 +3,11 @@ import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router';
 import Head from 'next/head'
 import "styles/app.less";
-function App({ Component, pageProps }: AppProps) {
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+
+function App({ Component, pageProps }: AppProps) {
+  const queryClient = new QueryClient()
   const router = useRouter();
 
   // const [loading, setLoading] = useState(true);
@@ -52,7 +55,9 @@ function App({ Component, pageProps }: AppProps) {
           });`}}
         /> */}
       </Head>
-      <Component {...pageProps} />
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </>
   )
 }
