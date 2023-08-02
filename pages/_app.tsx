@@ -42,6 +42,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   // 在 loading 为 true 或者当前路由不是根路径时，不显示任何内容
   // if (loading || router.pathname !== '/') return null;
 
+
   return (
     <>
       <Head>

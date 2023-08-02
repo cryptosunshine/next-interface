@@ -1,6 +1,7 @@
 import Image from 'next/image'
+import ThemeSwitcher from '@/components/Theme/ThemeSwitcher';
 import styles from '@/styles/page.module.css'
-// const Less = require('@/styles/home.module.less')
+const Less = require('@/styles/home.module.less')
 import { useIntl } from "react-intl";
 
 export default function Home() {
@@ -32,8 +33,10 @@ export default function Home() {
           </a>
         </div>
       </div>
-
+      <ThemeSwitcher></ThemeSwitcher>
+        <p className={Less['primary-color']}>{t('more')}</p>
       <div className={styles.center}>
+        
         <Image
           className={styles.logo}
           src="/next.svg"
@@ -42,10 +45,10 @@ export default function Home() {
           height={37}
           priority
         />
-        <p>{t('more')}</p>
+        
       </div>
 
-      <div className={styles.grid+' '}>
+      <div className={styles.grid}>
         <a
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           className={styles.card}
