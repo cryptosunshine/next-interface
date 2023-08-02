@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import type { AppProps } from 'next/app'
-import { useRouter } from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 import Head from 'next/head'
 import "styles/app.less";
+import { IntlProvider } from 'react-intl'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import * as localeTypes from '../locales/types';
+import locales from '../locales'
 
-
-function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   const queryClient = new QueryClient()
   const router = useRouter();
 
@@ -16,9 +18,15 @@ function App({ Component, pageProps }: AppProps) {
   //   setLoading(false);
   // }, []);
 
+  // 多语言配置
+  const DefaultLocale = 'en';
+  const { locale = DefaultLocale, defaultLocale, pathname }: NextRouter = router;
+  const localeCopy: localeTypes.LocaleData = locales[locale];
+  const messages = { ...localeCopy[pathname], ...localeCopy['share'] }
+
   useEffect(() => {
-    
-    const handleRouteChange = (url:any) => {
+
+    const handleRouteChange = (url: any) => {
       console.log(url)
       window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
         page_path: url,
@@ -30,7 +38,7 @@ function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  
+
   // 在 loading 为 true 或者当前路由不是根路径时，不显示任何内容
   // if (loading || router.pathname !== '/') return null;
 
@@ -56,7 +64,13 @@ function App({ Component, pageProps }: AppProps) {
         /> */}
       </Head>
       <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
+        <IntlProvider
+          locale={locale}
+          defaultLocale={defaultLocale}
+          messages={messages}
+        >
+          <Component {...pageProps} />
+        </IntlProvider>
       </QueryClientProvider>
     </>
   )

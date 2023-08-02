@@ -1,8 +1,12 @@
 import Image from 'next/image'
 import styles from '@/styles/page.module.css'
 // const Less = require('@/styles/home.module.less')
+import { useIntl } from "react-intl";
 
 export default function Home() {
+  const { formatMessage } = useIntl()
+  const t = (id: string) => formatMessage({ id })
+  
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -38,6 +42,7 @@ export default function Home() {
           height={37}
           priority
         />
+        <p>{t('more')}</p>
       </div>
 
       <div className={styles.grid+' '}>
