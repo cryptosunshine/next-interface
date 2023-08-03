@@ -14,3 +14,6 @@ pnpm dev
 
 React query
 https://tanstack.com/query/v3/docs/react/overview
+
+jest
+https://jestjs.io/zh-Hans/
