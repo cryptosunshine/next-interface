@@ -153,10 +153,7 @@ export default class ApiClient<T> extends BaseApiClient<T> {
         } else if (CODE_NEED_LOGIN === result.code) {
             userLoginOut(this.context);
         } else {
-            resolve({
-                code: result.code,
-                msg: result.msg
-            });
+            resolve(result);
         }
     }
 

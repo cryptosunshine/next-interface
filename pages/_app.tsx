@@ -5,6 +5,7 @@ import Head from 'next/head'
 import "styles/app.less";
 import { IntlProvider } from 'react-intl'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import * as localeTypes from '../locales/types';
 import locales from '../locales'
 
@@ -79,6 +80,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         >
           <Component {...pageProps} />
         </IntlProvider>
+        {
+          process.env.NODE_ENV === "development" && <ReactQueryDevtools />
+        }
       </QueryClientProvider>
     </>
   )
